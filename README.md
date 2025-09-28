@@ -46,7 +46,7 @@ This README links the scripts and shows + explains the workflow.
 <br>
 
 ### 2️⃣ Build Master Dataset
-**Script:** [scripts/masterDataset.py](scripts/masterDataset.py)  
+**Script:** [scripts/master_dataset.py](scripts/master_dataset.py)  
 
 #### What it does
 - Combines all recent CSVs into `All_Months_Combined.csv`  
