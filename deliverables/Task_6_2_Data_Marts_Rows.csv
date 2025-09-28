@@ -1,0 +1,5 @@
+Data Mart System Name,Count Rows,Count Distinct Primary Key,Count Distinct Row ID
+DimCustomer,791,791,
+DimProduct,1841,1837,
+DimGeography,607,607,
+FactOrders,7920,4312,7920.0

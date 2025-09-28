@@ -1,0 +1,6 @@
+KPI,Description,Formula,Granularity
+Average Price (per product),Average selling price of each product,Sales ÷ Quantity,"Product, Month"
+Sales by State,Total sales amount per state,SUM(Sales),"State, Month"
+Top Customers per Segment,Customers with the highest total sales in each segment,SUM(Sales) grouped by Customer ID within each Segment,"Customer, Segment, Month"
+Top/Bottom Products by Sales (per state),Ranking of products by total sales value within each state,SUM(Sales) grouped by Product ID and State,"Product, State, Month"
+Top/Bottom Products by Avg Delivery Time (per state),Ranking of products based on average days between order date and ship date,AVG(Ship Date – Order Date),"Product, State, Month"

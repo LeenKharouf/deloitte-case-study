@@ -1,0 +1,51 @@
+-- =========================
+-- DimCustomer Table
+-- =========================
+CREATE TABLE DimCustomer (
+    CustomerID CHAR(10) PRIMARY KEY,            -- unique ID
+    CustomerName TEXT NOT NULL,                 -- must always have a name
+    Segment VARCHAR(20) CHECK (Segment IN ('Consumer','Corporate','Home Office'))  -- given that these are the only 3 segments
+);
+
+-- =========================
+-- DimProduct Table
+-- =========================
+CREATE TABLE DimProduct (
+    ProductID CHAR(12) PRIMARY KEY,  
+    ProductName TEXT NOT NULL,
+    Category VARCHAR(40) NOT NULL,
+    SubCategory VARCHAR(40) NOT NULL
+);
+
+-- =========================
+-- DimGeography Table
+-- =========================
+CREATE TABLE DimGeography (
+    GeographyID CHAR(12) PRIMARY KEY,           -- surrogate key
+    Country VARCHAR(50) NOT NULL,
+    State VARCHAR(50),
+    City VARCHAR(50),
+    Region VARCHAR(30) NOT NULL,
+    PostalCode VARCHAR(15)
+);
+-- =========================
+-- FactOrders Table
+-- =========================
+CREATE TABLE FactOrders (
+    RowID INT PRIMARY KEY,                      -- unique row
+    OrderID CHAR(12) NOT NULL,
+    CustomerID CHAR(10) NOT NULL,
+    ProductID CHAR(12) NOT NULL,
+    GeographyID CHAR(12) NOT NULL,
+    OrderDate DATE NOT NULL,
+    ShipDate DATE NOT NULL,
+    ShipMode VARCHAR(30),
+    Sales DECIMAL(12,2) CHECK (Sales >= 0),     -- sales cannot be negative
+    Quantity INT CHECK (Quantity >= 0),         -- no negative quantities
+    Discount DECIMAL(4,2) 
+        CHECK (Discount >= 0 AND Discount <= 1), -- discount between 0–1
+    Profit DECIMAL(12,2),
+    FOREIGN KEY (CustomerID) REFERENCES DimCustomer(CustomerID),
+    FOREIGN KEY (ProductID) REFERENCES DimProduct(ProductID),
+    FOREIGN KEY (GeographyID) REFERENCES DimGeography(GeographyID)
+);
